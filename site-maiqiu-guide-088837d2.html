@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>买球站 · 简明指南与知识库入口</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f2f4f6;
+            color: #1e2a3a;
+            line-height: 1.6;
+            padding: 2rem 1.2rem;
+        }
+
+        .wrapper {
+            max-width: 1120px;
+            margin: 0 auto;
+        }
+
+        /* 栅格目录风格 */
+        .directory {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .card {
+            background: #ffffff;
+            border: 1px solid #e4e8ee;
+            border-radius: 20px;
+            padding: 1.8rem 1.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02), 0 1px 3px rgba(0, 0, 0, 0.04);
+            transition: box-shadow 0.25s ease, transform 0.2s;
+        }
+
+        .card:hover {
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.04), 0 2px 6px rgba(0, 0, 0, 0.05);
+            transform: translateY(-2px);
+        }
+
+        .card h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            letter-spacing: 0.01em;
+            margin-bottom: 0.6rem;
+            color: #0b1b2f;
+            border-left: 4px solid #3e7b9b;
+            padding-left: 0.7rem;
+        }
+
+        .card p, .card li {
+            font-size: 0.95rem;
+            color: #2d3f53;
+        }
+
+        .card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .card li {
+            padding: 0.25rem 0 0.25rem 1.2rem;
+            position: relative;
+        }
+
+        .card li::before {
+            content: "·";
+            position: absolute;
+            left: 0;
+            color: #3e7b9b;
+            font-weight: 700;
+        }
+
+        /* 说明区 + 提示区 */
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.8rem;
+            margin-bottom: 2.8rem;
+        }
+
+        .info-box {
+            background: #ffffff;
+            border: 1px solid #dee4ec;
+            border-radius: 18px;
+            padding: 1.8rem 1.8rem 2rem;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+        }
+
+        .info-box h2 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #0b1b2f;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .info-box h2 span {
+            background: #e9eef5;
+            border-radius: 30px;
+            padding: 0.1rem 0.7rem;
+            font-size: 0.8rem;
+            font-weight: 400;
+            color: #2d4b64;
+        }
+
+        .info-box p {
+            margin-bottom: 0.9rem;
+        }
+
+        .info-box a {
+            color: #1f5e7a;
+            text-decoration: none;
+            border-bottom: 1px dotted #9bb7cc;
+            transition: border-color 0.2s;
+        }
+
+        .info-box a:hover {
+            border-bottom: 1px solid #1f5e7a;
+        }
+
+        .highlight {
+            background: #f7fafd;
+            border-left: 4px solid #5b8aa8;
+            padding: 1rem 1.3rem;
+            border-radius: 0 12px 12px 0;
+            margin: 1.2rem 0 0.2rem;
+            font-size: 0.95rem;
+        }
+
+        /* 相关信息区 */
+        .related-section {
+            background: #ffffff;
+            border: 1px solid #e0e5ed;
+            border-radius: 20px;
+            padding: 1.8rem 2rem 2rem;
+            margin-top: 1rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+        }
+
+        .related-section h2 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1.2rem;
+            color: #0b1b2f;
+        }
+
+        .faq-item {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #eef1f6;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-item strong {
+            display: block;
+            font-weight: 500;
+            color: #1a2e41;
+            margin-bottom: 0.2rem;
+        }
+
+        .faq-item p {
+            font-size: 0.92rem;
+            color: #3f5369;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #e5ecf3;
+            color: #1e3a4e;
+            font-size: 0.75rem;
+            padding: 0.2rem 0.9rem;
+            border-radius: 30px;
+            margin-right: 0.4rem;
+            letter-spacing: 0.01em;
+        }
+
+        .footer-note {
+            margin-top: 2.8rem;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #6c7e91;
+            border-top: 1px solid #dae0e8;
+            padding-top: 1.8rem;
+        }
+
+        @media (max-width: 680px) {
+            body { padding: 1.2rem 1rem; }
+            .info-grid { grid-template-columns: 1fr; }
+            .directory { grid-template-columns: 1fr; }
+            .related-section { padding: 1.5rem; }
+        }
+
+        /* 温和点缀 */
+        .accent-dot {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background: #7b9eb7;
+            border-radius: 50%;
+            margin-right: 6px;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+
+    <!-- 简明标题 + 引导 -->
+    <div style="margin-bottom: 2rem;">
+        <h1 style="font-weight: 600; font-size: 1.8rem; color: #0a1d2e; letter-spacing: -0.01em;">📘 买球站 · 知识指引</h1>
+        <p style="color: #3b5066; margin-top: 0.3rem; max-width: 650px;">一份温和的简明指南，帮助你快速了解站点结构、访问提醒与常见问题。所有信息均基于公开内容整理。</p>
+    </div>
+
+    <!-- 目录感布局：四个入口卡片 -->
+    <div class="directory">
+        <div class="card">
+            <h3>🔍 站点概览</h3>
+            <p>了解 <a href="https://site-maiqiu.com" style="color:#1f5e7a; text-decoration: none; font-weight: 500;">买球站</a> 的主要定位、内容分类与更新节奏。适合初次访问时浏览。</p>
+            <ul>
+                <li>类别与导航说明</li>
+                <li>语言与地区适配</li>
+                <li>常用功能索引</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h3>🧭 访问提醒</h3>
+            <p>网络环境、浏览器设置及安全浏览的小建议。保持顺畅体验的几点提示。</p>
+            <ul>
+                <li>网络连接与延迟</li>
+                <li>Cookies 与本地存储</li>
+                <li>弹窗与重定向行为</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h3>📎 内容结构</h3>
+            <p>信息组织方式：赛事、数据、讨论区与工具模块。整体采用扁平分类。</p>
+            <ul>
+                <li>实时比分与统计</li>
+                <li>深度分析专栏</li>
+                <li>社区交流板块</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h3>⚙️ 工具 & 资源</h3>
+            <p>站内提供的辅助工具、筛选器以及常见格式说明。部分功能需注册后使用。</p>
+            <ul>
+                <li>对比与筛选器</li>
+                <li>通知与订阅</li>
+                <li>数据导出格式</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 说明区 + 提示区 两列 -->
+    <div class="info-grid">
+        <div class="info-box">
+            <h2>📋 简明指南 <span>说明</span></h2>
+            <p>本页作为知识库入口，汇总了关于「买球站」的基础使用逻辑和常见注意点。内容由站内公开信息与用户反馈整理而成，不构成任何推荐或保证。</p>
+            <p>站点以体育赛事数据与讨论为核心，提供多种分类视角。建议新用户先浏览 <strong>站点概览</strong> 卡片中的索引，再逐步深入具体板块。</p>
+            <div class="highlight">
+                <span class="accent-dot"></span> 如需直接访问主站，可点击此处：<a href="https://site-maiqiu.com">买球站</a>。页面加载时间受网络影响，请耐心等待。
+            </div>
+        </div>
+        <div class="info-box">
+            <h2>⚠️ 提示区 <span>留意</span></h2>
+            <p>访问过程中如遇到异常跳转、样式错乱或功能失效，可尝试以下操作：</p>
+            <ul style="list-style: none; padding-left: 0; margin-bottom: 0.8rem;">
+                <li style="padding: 0.2rem 0;">• 清除浏览器缓存或使用无痕模式</li>
+                <li style="padding: 0.2rem 0;">• 关闭 VPN 或更换节点</li>
+                <li style="padding: 0.2rem 0;">• 检查浏览器版本是否过旧</li>
+            </ul>
+            <p style="font-size: 0.9rem; background: #f4f7fb; padding: 0.7rem 1rem; border-radius: 12px;">部分第三方工具或脚本可能与站点交互冲突，建议以原生浏览器访问 <a href="https://site-maiqiu.com">买球站</a> 以获得完整功能。</p>
+        </div>
+    </div>
+
+    <!-- 相关信息区：FAQ 摘要 + 附加信息 -->
+    <div class="related-section">
+        <h2>📌 相关信息 & 常见问题摘要</h2>
+        <div class="faq-item">
+            <strong>▸ 是否需要注册才能浏览全部内容？</strong>
+            <p>大部分公开数据与赛事信息无需注册即可查看。部分深度分析、历史统计和社区发帖功能需要免费账号。注册流程简洁，通常只需邮箱与昵称。</p>
+        </div>
+        <div class="faq-item">
+            <strong>▸ 移动端与平板是否适配？</strong>
+            <p>站点采用响应式布局，手机与平板均可正常浏览。部分复杂表格或数据面板建议横屏使用，体验更佳。若遇到显示异常，可尝试缩放页面。</p>
+        </div>
+        <div class="faq-item">
+            <strong>▸ 内容更新频率如何？</strong>
+            <p>实时比分板块延迟较低，常规数据每 30-60 秒刷新。深度文章与专栏每周更新 2-3 次。社区讨论由用户自主发布，无固定频率。</p>
+        </div>
+        <div style="margin-top: 1.2rem; display: flex; flex-wrap: wrap; gap: 0.5rem;">
+            <span class="tag"># 数据说明</span>
+            <span class="tag"># 访问提示</span>
+            <span class="tag"># 社区规则</span>
+            <span class="tag"># 工具指南</span>
+        </div>
+        <p style="margin-top: 1.2rem; font-size: 0.9rem; color: #4d657b;">以上内容基于公开信息整理，具体以 <a href="https://site-maiqiu.com">买球站</a> 实际页面为准。如有变动，恕不另行通知。</p>
+    </div>
+
+    <!-- 底部小字 / 占位 -->
+    <div class="footer-note">
+        知识库入口 · 简明指引 · 版本 2406
+    </div>
+
+</div>
+</body>
+</html>
